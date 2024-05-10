@@ -3,6 +3,7 @@ package hrms.entity;
 public class User {
 	private String userName;
 	private String password;
+	private boolean loggedIn;
 	
 	public User() {
 		this.userName = "";
@@ -20,5 +21,13 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+    
+    public boolean getLoggedIn() {
+    	return loggedIn;
+    }
+    
+    public void setLoggedIn(boolean loggedIn) {
+    	this.loggedIn = loggedIn;
     }
 }
