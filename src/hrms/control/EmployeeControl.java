@@ -2,10 +2,10 @@ package hrms.control;
 
 import java.util.List;
 
-import hrms.boundary.IEmployeeControl;
+import hrms.boundary.IEmployeeClient;
 import hrms.entity.Employee;
 
-public class EmployeeControl implements IEmployeeControl {
+public class EmployeeControl implements IEmployeeClient {
     private List<Employee> employees;
 
     // Constructor
@@ -18,7 +18,7 @@ public class EmployeeControl implements IEmployeeControl {
         boolean found = false;
         for (Employee emp : employees) {
             if (emp.getEmployeeId() == employeeId) {
-                System.out.println(emp);
+                System.out.println(emp.toString());
                 found = true;
                 break;
             }
@@ -33,7 +33,7 @@ public class EmployeeControl implements IEmployeeControl {
         boolean found = false;
         for (Employee emp : employees) {
             if (emp.getLineManagerId() == lineManagerId && emp.getEmployeeId() == employeeId) {
-                System.out.println(emp);
+                System.out.println(emp.toString());
                 found = true;
                 break;
             }
@@ -48,7 +48,7 @@ public class EmployeeControl implements IEmployeeControl {
         boolean found = false;
         for (Employee emp : employees) {
             if (emp.getLineManagerId() == lineManagerId) {
-                System.out.println(emp);
+                System.out.println(emp.toString());
                 found = true;
             }
         }

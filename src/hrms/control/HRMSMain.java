@@ -1,18 +1,22 @@
 package hrms.control;
 
 import hrms.HardCodedData;
+import hrms.entity.Employee;
 import hrms.entity.User;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class HRMSMain {
 	User _user = new User();
+	static List<Employee> _employees = new ArrayList();
 	public static void main(String[] args) {
 		HardCodedData hardCodedData = new HardCodedData();
 		System.out.println(hardCodedData.getWelcomeMessage());
 		User[] users = hardCodedData.getUsers();
 		List<User> userList = Arrays.asList(users);
+		_employees = hardCodedData.getEmployees();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter username:");
 		String username = scanner.next();
@@ -99,14 +103,22 @@ public class HRMSMain {
                 case 1:
                     // Code for self details
                     System.out.println("Showing self details...");
+                    EmployeeControl empControl = new EmployeeControl(_employees);
+                    empControl.getEmployeeDetails(_user.getEmployeeId());
                     break;
                 case 2:
-                    // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
+                    empControl = new EmployeeControl(_employees);
+                    empControl.getAllSubordinateEmployeesDetails(_user.getEmployeeId());
                     break;
                 case 3:
                     // Code for subordinate (employee) details
+                    
+                    System.out.print("\nEnter employee id: ");
+                    int employeeId = scanner.nextInt();
                     System.out.println("Showing subordinate (employee) details...");
+                    empControl = new EmployeeControl(_employees);
+                    empControl.getSubordinateEmployeeDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
                     return; // Return to main menu

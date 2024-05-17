@@ -124,5 +124,9 @@ public class Employee {
     public void setLineManagerId(int lineManagerId) {
         this.lineManagerId = lineManagerId;
     }
+    
+    public String toString() {
+		return "Employee name is " + this.getName() + ", Mobile No. is " + this.getMobileNo() + ", Email is " + this.getEmail() + ".";
+	}
 }
 
