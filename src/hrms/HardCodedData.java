@@ -27,15 +27,18 @@ public class HardCodedData implements IHrmsData {
 	
 	private User[] createUsers() {
 		
-		User[] users = new User[5];
-		users[0] = new User("admin", "admin");
+		User[] users = new User[8];
 		
 		
-		users[1] = new User("lm1", "lm1");
-		users[2] = new User("lm2", "lm2");
+		users[0] = new User("lm1", "x", 1);
+		users[1] = new User("lm2", "x", 2);
 		
-		users[3] = new User("emp1", "emp1");
-		users[4] = new User("emp2", "emp2");
+		users[2] = new User("EMP001", "x", 1);
+		users[3] = new User("EMP002", "x", 2);
+		users[4] = new User("EMP003", "x", 3);
+		users[5] = new User("EMP004", "x", 4);
+		users[6] = new User("EMP005", "x", 5);
+		users[7] = new User("EMP006", "x", 6);
 		
 		return users;
 	}
