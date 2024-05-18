@@ -2,10 +2,13 @@ package hrms;
 
 import hrms.boundary.IHrmsData;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import hrms.entity.Attendance;
 import hrms.entity.Employee;
 import hrms.entity.User;
 
@@ -24,6 +27,11 @@ public class HardCodedData implements IHrmsData {
 	public List<Employee> getEmployees() {
 		return createEmployee();
 	}
+	
+	public List<Attendance> getAttendaceData() {
+		return createAttendance();
+	}
+	
 	
 	private User[] createUsers() {
 		
@@ -84,4 +92,78 @@ public class HardCodedData implements IHrmsData {
 
         return employees;
     }
+
+	public static List<Attendance> createAttendance() {
+        List<Attendance> attendanceList = new ArrayList<>();
+
+        // Manually create attendance records for each employee
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 1, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 2, 1, "Present", LocalTime.of(9, 15), LocalTime.of(17, 15)));
+
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 3, 1, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 4, 1, "Present", LocalTime.of(8, 45), LocalTime.of(16, 45)));
+
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 5, 2, "Present", LocalTime.of(9, 0), LocalTime.of(17, 0)));
+
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 1), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 2), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 3), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 6), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 7), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 8), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 9), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 10), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 13), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+        attendanceList.add(new Attendance(LocalDate.of(2024, 5, 14), 6, 2, "Present", LocalTime.of(9, 30), LocalTime.of(17, 30)));
+
+        return attendanceList;
+    }
+
 }
