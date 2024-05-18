@@ -1,5 +1,4 @@
-
-package entity;
+package hrms.entity;
 
 import java.util.Date;
 
@@ -87,5 +86,3 @@ public class PerformanceReview {
                 '}';
     }
 }
-
-
