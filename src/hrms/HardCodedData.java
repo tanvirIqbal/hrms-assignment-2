@@ -10,6 +10,7 @@ import java.util.List;
 
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
+import hrms.entity.LeaveType;
 import hrms.entity.PerformanceReview;
 import hrms.entity.User;
 
@@ -39,6 +40,10 @@ public class HardCodedData implements IHrmsData {
 	 public List<PerformanceReview> getPerformanceReviews() {
         return createPerformanceReviews();
     }
+	 
+	 public List<LeaveType> getLeaveTypeData() {
+			return createLeaveType();
+		}
     
 	private User[] createUsers() {
 		
@@ -186,5 +191,19 @@ public class HardCodedData implements IHrmsData {
         return performanceReviews;
     }
 
+// Method to create a list of LeaveType records
+   private static List<LeaveType> createLeaveType() {
+       List<LeaveType> leaveTypes = new ArrayList<>();
+       
+       // Creating two LeaveType records using parameterized constructor
+       LeaveType leaveType1 = new LeaveType(1, "AL", "Annual Leave");
+       LeaveType leaveType2 = new LeaveType(2, "SL", "Sick Leave");
+
+       // Adding the records to the list
+       leaveTypes.add(leaveType1);
+       leaveTypes.add(leaveType2);
+       
+       return leaveTypes;
+   }
 
 }
