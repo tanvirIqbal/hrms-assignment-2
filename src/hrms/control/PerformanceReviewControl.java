@@ -1,7 +1,7 @@
 package hrms.control;
 
-import boundary.IPerformanceReviewClient;
-import entity.PerformanceReview;
+import hrms.boundary.IPerformanceReviewClient;
+import hrms.entity.PerformanceReview;
 
 import java.util.ArrayList;
 import java.util.List;
