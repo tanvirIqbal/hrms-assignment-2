@@ -10,13 +10,11 @@ import java.util.List;
 
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
+import hrms.entity.PerformanceReview;
 import hrms.entity.User;
 
 
-import entity.PerformanceReview;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 public class HardCodedData implements IHrmsData {
 	
@@ -38,7 +36,10 @@ public class HardCodedData implements IHrmsData {
 		return createAttendance();
 	}
 	
-	
+	 public List<PerformanceReview> getPerformanceReviews() {
+        return createPerformanceReviews();
+    }
+    
 	private User[] createUsers() {
 		
 		User[] users = new User[8];
@@ -172,22 +173,18 @@ public class HardCodedData implements IHrmsData {
         return attendanceList;
     }
 
-
-    public class HardcodedPerformanceReview {
-
-    // Static method to create a list of 6 hard-coded PerformanceReview records
-    public static List<PerformanceReview> getHardcodedReviews() {
-        List<PerformanceReview> reviews = new ArrayList<>();
-
-        reviews.add(new PerformanceReview(101, 201, new Date(), "Excellent performance", 4.8, "Lead new projects"));
-        reviews.add(new PerformanceReview(102, 202, new Date(), "Good job overall", 4.0, "Enhance teamwork skills"));
-        reviews.add(new PerformanceReview(103, 203, new Date(), "Satisfactory work", 3.5, "Improve punctuality"));
-        reviews.add(new PerformanceReview(104, 204, new Date(), "Needs improvement", 2.8, "Focus on technical skills"));
-        reviews.add(new PerformanceReview(105, 205, new Date(), "Outstanding contribution", 5.0, "Mentor new employees"));
-        reviews.add(new PerformanceReview(106, 206, new Date(), "Below expectations", 2.0, "Develop better time management"));
-
-        return reviews;
+   private static List<PerformanceReview> createPerformanceReviews() {
+        List<PerformanceReview> performanceReviews = new ArrayList<>();
+        
+        performanceReviews.add(new PerformanceReview(1, 2, new Date(), "Excellent performance", 4.5, "Maintain performance"));
+        performanceReviews.add(new PerformanceReview(2, 1, new Date(), "Good work", 4.0, "Take on more responsibilities"));
+        performanceReviews.add(new PerformanceReview(3, 1, new Date(), "Average performance", 3.0, "Improve coding skills"));
+        performanceReviews.add(new PerformanceReview(4, 1, new Date(), "Great analytical skills", 4.2, "Develop reporting skills"));
+        performanceReviews.add(new PerformanceReview(5, 2, new Date(), "Outstanding HR management", 4.8, "Continue leadership development"));
+        performanceReviews.add(new PerformanceReview(6, 2, new Date(), "Good sales performance", 3.8, "Improve client communication"));
+        
+        return performanceReviews;
     }
-}
+
 
 }

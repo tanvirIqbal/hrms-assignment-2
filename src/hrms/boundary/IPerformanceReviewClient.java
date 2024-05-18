@@ -4,6 +4,7 @@ import entity.PerformanceReview;
 import java.util.List;
 
 public interface IPerformanceReviewClient {
-    List<PerformanceReview> createPerformanceReviews();
+    void getEmployeePerformanceReviewDetails(int employeeID);
+    void getSubordinateEmployeePerformanceReviewDetails(int lineManagerID, int employeeID);
+    void getAllSubordinateEmployeesPerformanceReviewDetails(int lineManagerID);
 }
-
