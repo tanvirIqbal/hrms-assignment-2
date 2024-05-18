@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class Attendance {
     private LocalDate attendanceDate;
-    private String employeeID;
-    private String lineManagerID;
+    private int employeeID;
+    private int lineManagerID;
     private String status;
     private LocalTime clockInTime;
     private LocalTime clockOutTime;
@@ -16,7 +16,7 @@ public class Attendance {
     }
 
     // All-parameter constructor
-    public Attendance(LocalDate attendanceDate, String employeeID, String lineManagerID, String status, LocalTime clockInTime, LocalTime clockOutTime) {
+    public Attendance(LocalDate attendanceDate, int employeeID, int lineManagerID, String status, LocalTime clockInTime, LocalTime clockOutTime) {
         this.attendanceDate = attendanceDate;
         this.employeeID = employeeID;
         this.lineManagerID = lineManagerID;
@@ -33,19 +33,19 @@ public class Attendance {
         this.attendanceDate = attendanceDate;
     }
 
-    public String getEmployeeID() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
+    public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
 
-    public String getLineManagerID() {
+    public int getLineManagerID() {
         return lineManagerID;
     }
 
-    public void setLineManagerID(String lineManagerID) {
+    public void setLineManagerID(int lineManagerID) {
         this.lineManagerID = lineManagerID;
     }
 
