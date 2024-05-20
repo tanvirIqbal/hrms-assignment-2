@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import hrms.entity.Attendance;
@@ -181,12 +182,16 @@ public class HardCodedData implements IHrmsData {
    private static List<PerformanceReview> createPerformanceReviews() {
         List<PerformanceReview> performanceReviews = new ArrayList<>();
         
-        performanceReviews.add(new PerformanceReview(1, 2, new Date(), "Excellent performance", 4.5, "Maintain performance"));
-        performanceReviews.add(new PerformanceReview(2, 1, new Date(), "Good work", 4.0, "Take on more responsibilities"));
-        performanceReviews.add(new PerformanceReview(3, 1, new Date(), "Average performance", 3.0, "Improve coding skills"));
-        performanceReviews.add(new PerformanceReview(4, 1, new Date(), "Great analytical skills", 4.2, "Develop reporting skills"));
-        performanceReviews.add(new PerformanceReview(5, 2, new Date(), "Outstanding HR management", 4.8, "Continue leadership development"));
-        performanceReviews.add(new PerformanceReview(6, 2, new Date(), "Good sales performance", 3.8, "Improve client communication"));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2024, Calendar.MAY, 1);
+        Date reviewDate = calendar.getTime();
+        
+        performanceReviews.add(new PerformanceReview(1, 2, reviewDate, "Excellent performance", 4.5, "Maintain performance"));
+        performanceReviews.add(new PerformanceReview(2, 1, reviewDate, "Good work", 4.0, "Take on more responsibilities"));
+        performanceReviews.add(new PerformanceReview(3, 1, reviewDate, "Average performance", 3.0, "Improve coding skills"));
+        performanceReviews.add(new PerformanceReview(4, 1, reviewDate, "Great analytical skills", 4.2, "Develop reporting skills"));
+        performanceReviews.add(new PerformanceReview(5, 2, reviewDate, "Outstanding HR management", 4.8, "Continue leadership development"));
+        performanceReviews.add(new PerformanceReview(6, 2, reviewDate, "Good sales performance", 3.8, "Improve client communication"));
         
         return performanceReviews;
     }
