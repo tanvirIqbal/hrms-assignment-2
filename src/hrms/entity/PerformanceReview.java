@@ -76,13 +76,14 @@ public class PerformanceReview {
     // toString method
     @Override
     public String toString() {
-        return "PerformanceReview{" +
-                "employeeId=" + employeeId +
-                ", lineManagerId=" + lineManagerId +
-                ", reviewDate=" + reviewDate +
-                ", feedback='" + feedback + '\'' +
-                ", rating=" + rating +
-                ", goals='" + goals + '\'' +
-                '}';
+        return "PerformanceReview {" +
+               "\n  Employee ID       : " + employeeId +
+               "\n  Line Manager ID   : " + lineManagerId +
+               "\n  Review Date       : " + reviewDate +
+               "\n  Feedback          : '" + feedback + '\'' +
+               "\n  Rating            : " + rating +
+               "\n  Goals             : '" + goals + '\'' +
+               "\n}";
     }
+
 }
