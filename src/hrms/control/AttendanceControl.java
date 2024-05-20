@@ -23,6 +23,8 @@ public class AttendanceControl  implements IAttendanceClient {
         boolean found = false;
         for (Attendance attendance : attendanceList) {
             if (attendance.getEmployeeID() == employeeID) {
+            	if(!found)
+            		System.out.println("Employee Name is " + getEmployeeNameByID(attendance.getEmployeeID()) + " and Line Manager name is " + getEmployeeNameByID(attendance.getLineManagerID()));
                 System.out.println(attendance.toString());
                 found = true;
             }
@@ -35,9 +37,12 @@ public class AttendanceControl  implements IAttendanceClient {
     @Override
     public void getSubordinateEmployeeAttendanceDetails(int lineManagerID, int employeeID) {
         boolean found = false;
+        
         for (Attendance attendance : attendanceList) {
             if (attendance.getLineManagerID() == lineManagerID && attendance.getEmployeeID() == employeeID) {
-                System.out.println(attendance);
+            	if(!found)
+            		System.out.println("Employee Name is " + getEmployeeNameByID(attendance.getEmployeeID()) + " and Line Manager name is " + getEmployeeNameByID(attendance.getLineManagerID()));
+                System.out.println(attendance.toString());
                 found = true;
             }
         }
@@ -49,14 +54,29 @@ public class AttendanceControl  implements IAttendanceClient {
     @Override
     public void getAllSubordinateEmployeesAttendanceDetails(int lineManagerID) {
         boolean found = false;
+        int empId = 0;
         for (Attendance attendance : attendanceList) {
             if (attendance.getLineManagerID() == lineManagerID) {
-                System.out.println(attendance);
+            	if(empId !=  attendance.getEmployeeID())
+            	{
+            		empId = attendance.getEmployeeID();
+            		System.out.println("Employee Name is " + getEmployeeNameByID(attendance.getEmployeeID()) + " and Line Manager name is " + getEmployeeNameByID(attendance.getLineManagerID()));
+            	}
+                System.out.println(attendance.toString());
                 found = true;
             }
         }
         if (!found) {
             System.out.println("Attendance data not found");
         }
+    }
+    
+    private String getEmployeeNameByID(int employeeID) {
+        for (Employee employee : employeeList) {
+            if (employee.getEmployeeId() == employeeID) {
+                return employee.getName();
+            }
+        }
+        return "Unknown";
     }
 }

@@ -1,6 +1,7 @@
 package hrms.control;
 
 import hrms.HardCodedData;
+import hrms.entity.Attendance;
 import hrms.entity.Employee;
 import hrms.entity.User;
 import java.util.List;
@@ -11,12 +12,14 @@ import java.util.Scanner;
 public class HRMSMain {
 	User _user = new User();
 	static List<Employee> _employees = new ArrayList();
+	static List<Attendance> _attendanceData = new ArrayList();
 	public static void main(String[] args) {
 		HardCodedData hardCodedData = new HardCodedData();
 		System.out.println(hardCodedData.getWelcomeMessage());
 		User[] users = hardCodedData.getUsers();
 		List<User> userList = Arrays.asList(users);
 		_employees = hardCodedData.getEmployees();
+		_attendanceData = hardCodedData.getAttendaceData();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter username:");
 		String username = scanner.next();
@@ -144,14 +147,23 @@ public class HRMSMain {
                 case 1:
                     // Code for self details
                     System.out.println("Showing self details...");
+                    AttendanceControl attendanceControl = new AttendanceControl(_attendanceData, _employees);
+                    attendanceControl.getEmployeeAttendanceDetails(_user.getEmployeeId());
                     break;
                 case 2:
                     // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
+                    attendanceControl = new AttendanceControl(_attendanceData, _employees);
+                    attendanceControl.getAllSubordinateEmployeesAttendanceDetails(_user.getEmployeeId());
                     break;
                 case 3:
                     // Code for subordinate (employee) details
+                	 
+                    System.out.print("\nEnter employee id: ");
+                    int employeeId = scanner.nextInt(); // to get employeeID from the user seperately
                     System.out.println("Showing subordinate (employee) details...");
+                    attendanceControl = new AttendanceControl(_attendanceData, _employees);
+                    attendanceControl.getSubordinateEmployeeAttendanceDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
                     return; // Return to main menu
