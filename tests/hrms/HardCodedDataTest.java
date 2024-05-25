@@ -4,7 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import hrms.control.AttendanceControl;
+import hrms.entity.Attendance;
+import hrms.entity.Employee;
 import hrms.entity.LeaveType;
+
+import java.util.ArrayList;
 import java.util.List;
 
 class HardCodedDataTest {
@@ -49,4 +54,16 @@ class HardCodedDataTest {
 	        assertNotEquals(expectedLeaveType2, result.get(1));
 	    }
 
+	 
+	 @Test
+	    public void testGetAttendaceData() {
+			HardCodedData hardCodedData = new HardCodedData();
+
+	        // Get the attendance data
+	        List<Attendance> result = hardCodedData.getAttendaceData();
+
+	        // Assert that the result is not null and not empty
+	        assertNotNull(result, "The attendance data should not be null");
+	        assertFalse(result.isEmpty(), "The attendance data should not be empty");
+	    }
 }
