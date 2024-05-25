@@ -11,6 +11,7 @@ import java.util.List;
 
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
+import hrms.entity.LeaveRequest;
 import hrms.entity.LeaveType;
 import hrms.entity.PerformanceReview;
 import hrms.entity.User;
@@ -211,4 +212,50 @@ public class HardCodedData implements IHrmsData {
        return leaveTypes;
    }
 
+   public static List<LeaveRequest> createLeaveRequests() {
+       List<LeaveRequest> leaveRequests = new ArrayList<>();
+       
+    // Create Calendar instance for May 2024
+       Calendar calendar = Calendar.getInstance();
+       calendar.set(Calendar.YEAR, 2024);
+       calendar.set(Calendar.MONTH, Calendar.MAY);
+       calendar.set(Calendar.DAY_OF_MONTH, 1); // Set the day to 1st of May
+
+       // Set the start and end date to May 2024
+       Date date1 = calendar.getTime();
+       calendar.set(Calendar.DAY_OF_MONTH, 5); // Set the day to 5th of May
+       Date date5 = calendar.getTime();
+       calendar.set(Calendar.DAY_OF_MONTH, 3); // Set the day to 5th of May
+       Date date3 = calendar.getTime();
+       
+       calendar.set(Calendar.DAY_OF_MONTH, 8); // Set the day to 8th of May
+       Date date8 = calendar.getTime();
+       calendar.set(Calendar.DAY_OF_MONTH, 14); // Set the day to 8th of May
+       Date date14 = calendar.getTime();
+       calendar.set(Calendar.DAY_OF_MONTH, 11); // Set the day to 8th of May
+       Date date11 = calendar.getTime();
+       
+       calendar.set(Calendar.DAY_OF_MONTH, 9); // Set the day to 8th of May
+       Date date9 = calendar.getTime();
+       
+       calendar.set(Calendar.DAY_OF_MONTH, 2); // Set the day to 8th of May
+       Date date2 = calendar.getTime();
+
+       LeaveRequest leaveRequest1 = new LeaveRequest(1, 1, 1, 2, date1, date5, "Annual Leave", 5, "Approved");
+       LeaveRequest leaveRequest2 = new LeaveRequest(2, 2, 2, 1, date3, date5, "Sick Leave", 3, "Pending");
+       LeaveRequest leaveRequest3 = new LeaveRequest(3, 3, 2, 1, date8, date14, "Sick Leave", 7, "Approved");
+       LeaveRequest leaveRequest4 = new LeaveRequest(4, 4, 1, 1, date8, date11, "Annual Leave", 4, "Pending");
+       LeaveRequest leaveRequest5 = new LeaveRequest(5, 5, 1, 2, date5, date9, "Sick Leave", 5, "Approved");
+       LeaveRequest leaveRequest6 = new LeaveRequest(6, 6, 1, 2, date1, date2, "Annual Leave", 2, "Rejected");
+
+       // Add leave requests to the list
+       leaveRequests.add(leaveRequest1);
+       leaveRequests.add(leaveRequest2);
+       leaveRequests.add(leaveRequest3);
+       leaveRequests.add(leaveRequest4);
+       leaveRequests.add(leaveRequest5);
+       leaveRequests.add(leaveRequest6);
+
+       return leaveRequests;
+   }
 }

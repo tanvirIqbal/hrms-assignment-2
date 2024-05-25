@@ -1,5 +1,7 @@
 package hrms.entity;
 
+import java.util.Objects;
+
 public class LeaveType {
     private int leaveTypeId;
     private String code;
@@ -49,6 +51,21 @@ public class LeaveType {
                 ", code='" + code + '\'' +
                 ", leaveName='" + leaveName + '\'' +
                 '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LeaveType leaveType = (LeaveType) o;
+        return leaveTypeId == leaveType.leaveTypeId &&
+                Objects.equals(code, leaveType.code) &&
+                Objects.equals(leaveName, leaveType.leaveName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leaveTypeId, code, leaveName);
     }
 
 }
