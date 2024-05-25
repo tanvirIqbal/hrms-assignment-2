@@ -77,6 +77,6 @@ public class AttendanceControl  implements IAttendanceClient {
                 return employee.getName();
             }
         }
-        return "Unknown";
+        return "Employee is not found.";
     }
 }
