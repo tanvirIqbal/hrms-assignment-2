@@ -3,6 +3,8 @@ package hrms.control;
 import hrms.HardCodedData;
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
+import hrms.entity.LeaveRequest;
+import hrms.entity.LeaveType;
 import hrms.entity.PerformanceReview;
 import hrms.entity.User;
 import java.util.List;
@@ -11,35 +13,50 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class HRMSMain {
-	User _user = new User();
-	static List<Employee> _employees = new ArrayList();
-	static List<Attendance> _attendanceData = new ArrayList();
-	static List<PerformanceReview> _performanceReviewData = new ArrayList();
-	public static void main(String[] args) {
-		HardCodedData hardCodedData = new HardCodedData();
-		System.out.println(hardCodedData.getWelcomeMessage());
-		User[] users = hardCodedData.getUsers();
-		List<User> userList = Arrays.asList(users);
-		_employees = hardCodedData.getEmployees();
-		_attendanceData = hardCodedData.getAttendaceData();
-		_performanceReviewData = hardCodedData.getPerformanceReviews();
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter username:");
-		String username = scanner.next();
-		System.out.println("Enter password:");
-		String password = scanner.next();
-		
-		
-		HRMSMain hrmsMain = new HRMSMain();
-		hrmsMain.login(userList, username, password);
-		
-		scanner.close();
+    private User _user = new User();
+    private static List<Employee> _employees = new ArrayList<>();
+    private static List<Attendance> _attendanceData = new ArrayList<>();
+    private static List<PerformanceReview> _performanceReviewData = new ArrayList<>();
+    private static List<LeaveRequest> _leaveRequestData = new ArrayList<>();
+    private static List<LeaveType> _leaveTypeData = new ArrayList<>();
 
+    private static HRMSMain instance = null;
 
-		
-	}
-	
-	public void login(List<User> userList, String enteredUsername, String enteredPassword) {
+    // Private constructor to prevent instantiation
+    private HRMSMain() {}
+
+    // Public method to provide access to the instance
+    public static HRMSMain getInstance() {
+        if (instance == null) {
+            instance = new HRMSMain();
+        }
+        return instance;
+    }
+
+    public static void main(String[] args) {
+        HardCodedData hardCodedData = new HardCodedData();
+        System.out.println(hardCodedData.getWelcomeMessage());
+        User[] users = hardCodedData.getUsers();
+        List<User> userList = Arrays.asList(users);
+        _employees = hardCodedData.getEmployees();
+        _attendanceData = hardCodedData.getAttendaceData();
+        _performanceReviewData = hardCodedData.getPerformanceReviews();
+        _leaveRequestData = hardCodedData.getLeaveRequestData();
+        _leaveTypeData = hardCodedData.getLeaveTypeData(); // Assuming you have a method to get leave types
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter username:");
+        String username = scanner.next();
+        System.out.println("Enter password:");
+        String password = scanner.next();
+        
+        HRMSMain hrmsMain = HRMSMain.getInstance();
+        hrmsMain.login(userList, username, password);
+        
+        scanner.close();
+    }
+
+    public void login(List<User> userList, String enteredUsername, String enteredPassword) {
         for (User user : userList) {
             if (user.getUsername().equals(enteredUsername) && user.getPassword().equals(enteredPassword)) {
                 System.out.println("Login successful.");
@@ -51,17 +68,15 @@ public class HRMSMain {
         }
         System.out.println("Invalid username or password. Please try again.");
     }
-	
-	 // Logout function
+
     public void logout() {
-    	_user.setLoggedIn(false);
+        _user.setLoggedIn(false);
         System.out.println("Logout successful.");
     }
 
-    // Menu function
     private void showMenu() {
         Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn() == true) {
+        while (_user.getLoggedIn()) {
             System.out.println("\nMain Menu");
             System.out.println("1. Employee Details");
             System.out.println("2. Attendance");
@@ -96,7 +111,7 @@ public class HRMSMain {
 
     private void showEmployeeDetailsMenu() {
         Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn() == true) {
+        while (_user.getLoggedIn()) {
             System.out.println("\nEmployee Details Menu");
             System.out.println("1. Self");
             System.out.println("2. Subordinate (All)");
@@ -107,7 +122,6 @@ public class HRMSMain {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    // Code for self details
                     System.out.println("Showing self details...");
                     EmployeeControl empControl = new EmployeeControl(_employees);
                     empControl.getEmployeeDetails(_user.getEmployeeId());
@@ -118,8 +132,6 @@ public class HRMSMain {
                     empControl.getAllSubordinateEmployeesDetails(_user.getEmployeeId());
                     break;
                 case 3:
-                    // Code for subordinate (employee) details
-                    
                     System.out.print("\nEnter employee id: ");
                     int employeeId = scanner.nextInt();
                     System.out.println("Showing subordinate (employee) details...");
@@ -127,7 +139,7 @@ public class HRMSMain {
                     empControl.getSubordinateEmployeeDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
-                    return; // Return to main menu
+                    return;
                 default:
                     System.out.println("Invalid choice. Please enter a number between 1 and 4.");
             }
@@ -136,8 +148,8 @@ public class HRMSMain {
     }
 
     private void showAttendanceMenu() {
-    	Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn() == true) {
+        Scanner scanner = new Scanner(System.in);
+        while (_user.getLoggedIn()) {
             System.out.println("\nAttendance Details Menu");
             System.out.println("1. Self");
             System.out.println("2. Subordinate (All)");
@@ -148,28 +160,24 @@ public class HRMSMain {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    // Code for self details
                     System.out.println("Showing self details...");
                     AttendanceControl attendanceControl = new AttendanceControl(_attendanceData, _employees);
                     attendanceControl.getEmployeeAttendanceDetails(_user.getEmployeeId());
                     break;
                 case 2:
-                    // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
                     attendanceControl = new AttendanceControl(_attendanceData, _employees);
                     attendanceControl.getAllSubordinateEmployeesAttendanceDetails(_user.getEmployeeId());
                     break;
                 case 3:
-                    // Code for subordinate (employee) details
-                	 
                     System.out.print("\nEnter employee id: ");
-                    int employeeId = scanner.nextInt(); // to get employeeID from the user seperately
+                    int employeeId = scanner.nextInt();
                     System.out.println("Showing subordinate (employee) details...");
                     attendanceControl = new AttendanceControl(_attendanceData, _employees);
                     attendanceControl.getSubordinateEmployeeAttendanceDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
-                    return; // Return to main menu
+                    return;
                 default:
                     System.out.println("Invalid choice. Please enter a number between 1 and 4.");
             }
@@ -178,8 +186,8 @@ public class HRMSMain {
     }
 
     private void showLeaveMenu() {
-    	Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn() == true) {
+        Scanner scanner = new Scanner(System.in);
+        while (_user.getLoggedIn()) {
             System.out.println("\nLeave Details Menu");
             System.out.println("1. Self");
             System.out.println("2. Subordinate (All)");
@@ -190,19 +198,24 @@ public class HRMSMain {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    // Code for self details
                     System.out.println("Showing self details...");
+                    LeaveRequestControl leaveRequestControl = new LeaveRequestControl(_employees, _leaveTypeData, _leaveRequestData);
+                    leaveRequestControl.getEmployeeLeaveRequestDetails(_user.getEmployeeId());
                     break;
                 case 2:
-                    // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
+                    leaveRequestControl = new LeaveRequestControl(_employees, _leaveTypeData, _leaveRequestData);
+                    leaveRequestControl.getAllSubordinateEmployeesLeaveRequestDetails(_user.getEmployeeId());
                     break;
                 case 3:
-                    // Code for subordinate (employee) details
+                    System.out.print("\nEnter employee id: ");
+                    int employeeId = scanner.nextInt();
                     System.out.println("Showing subordinate (employee) details...");
+                    leaveRequestControl = new LeaveRequestControl(_employees, _leaveTypeData, _leaveRequestData);
+                    leaveRequestControl.getSubordinateEmployeeLeaveRequestDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
-                    return; // Return to main menu
+                    return;
                 default:
                     System.out.println("Invalid choice. Please enter a number between 1 and 4.");
             }
@@ -211,8 +224,8 @@ public class HRMSMain {
     }
 
     private void showPerformanceMenu() {
-    	Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn() == true) {
+        Scanner scanner = new Scanner(System.in);
+        while (_user.getLoggedIn()) {
             System.out.println("\nPerformance Review Menu");
             System.out.println("1. Self");
             System.out.println("2. Subordinate (All)");
@@ -223,32 +236,28 @@ public class HRMSMain {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    // Code for self details
                     System.out.println("Showing self details...");
                     PerformanceReviewControl performanceReviewControl = new PerformanceReviewControl(_performanceReviewData, _employees);
                     performanceReviewControl.getEmployeePerformanceReviewDetails(_user.getEmployeeId());
                     break;
                 case 2:
-                    // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
                     performanceReviewControl = new PerformanceReviewControl(_performanceReviewData, _employees);
                     performanceReviewControl.getAllSubordinateEmployeesPerformanceReviewDetails(_user.getEmployeeId());
                     break;
                 case 3:
-                    // Code for subordinate (employee) details
-                	System.out.print("\nEnter employee id: ");
-                    int employeeId = scanner.nextInt(); // to get employeeID from the user seperately
+                    System.out.print("\nEnter employee id: ");
+                    int employeeId = scanner.nextInt();
                     System.out.println("Showing subordinate (employee) details...");
                     performanceReviewControl = new PerformanceReviewControl(_performanceReviewData, _employees);
                     performanceReviewControl.getSubordinateEmployeePerformanceReviewDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
-                    return; // Return to main menu
+                    return;
                 default:
                     System.out.println("Invalid choice. Please enter a number between 1 and 4.");
             }
         }
         scanner.close();
     }
-
 }

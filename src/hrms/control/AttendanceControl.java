@@ -6,8 +6,6 @@ import hrms.boundary.IAttendanceClient;
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
 
-import java.util.ArrayList;
-
 public class AttendanceControl  implements IAttendanceClient {
 	private List<Attendance> attendanceList;
     private List<Employee> employeeList;
@@ -71,12 +69,12 @@ public class AttendanceControl  implements IAttendanceClient {
         }
     }
     
-    private String getEmployeeNameByID(int employeeID) {
+    public String getEmployeeNameByID(int employeeID) {
         for (Employee employee : employeeList) {
             if (employee.getEmployeeId() == employeeID) {
                 return employee.getName();
             }
         }
-        return "Unknown";
+        return "Employee is not found.";
     }
 }

@@ -46,6 +46,10 @@ public class HardCodedData implements IHrmsData {
 	 public List<LeaveType> getLeaveTypeData() {
 			return createLeaveType();
 		}
+	 
+	 public List<LeaveRequest> getLeaveRequestData() {
+			return createLeaveRequests();
+		}
     
 	private User[] createUsers() {
 		
