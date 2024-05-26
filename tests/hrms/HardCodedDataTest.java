@@ -56,14 +56,24 @@ class HardCodedDataTest {
 
 	 
 	 @Test
-	    public void testGetAttendaceData() {
+	    public void testGetAttendaceData_checkNotNull() {
 			HardCodedData hardCodedData = new HardCodedData();
 
 	        // Get the attendance data
 	        List<Attendance> result = hardCodedData.getAttendaceData();
 
-	        // Assert that the result is not null and not empty
+	        // Assert that the result is not null
 	        assertNotNull(result, "The attendance data should not be null");
+	    }
+	 
+	 @Test
+	 public void testGetAttendaceData_checkNotEmpty() {
+			HardCodedData hardCodedData = new HardCodedData();
+
+	        // Get the attendance data
+	        List<Attendance> result = hardCodedData.getAttendaceData();
+
+	        // Assert that the result is not empty
 	        assertFalse(result.isEmpty(), "The attendance data should not be empty");
 	    }
 }
