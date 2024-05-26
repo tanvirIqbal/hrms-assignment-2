@@ -108,7 +108,6 @@ public class LeaveRequest {
     public String toString() {
         return "LeaveRequest{" +
                 "employeeId=" + employeeId +
-                ", lineManagerId=" + lineManagerId +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", reason='" + reason + '\'' +
