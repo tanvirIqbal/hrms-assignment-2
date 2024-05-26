@@ -18,18 +18,16 @@ import hrms.entity.Employee;
 
 class AttendanceControlTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
-	
-	@BeforeEach
+    private final PrintStream originalOut = System.out;
+
+    @BeforeEach
     public void setUp() {
-        // Redirect System.out to capture printed output
         System.setOut(new PrintStream(outContent));
     }
-	@AfterEach
+
+    @AfterEach
     public void tearDown() {
-        // Reset System.out to its original state
         System.setOut(originalOut);
-        outContent.reset();
     }
 	 @Test
 	    public void testGetEmployeeAttendanceDetails_InvalidEmployeeID() {
@@ -39,9 +37,10 @@ class AttendanceControlTest {
 		 
 		 AttendanceControl attendanceControl = new AttendanceControl(_attendanceData, _employees);
          attendanceControl.getEmployeeAttendanceDetails(99);
-         System.out.flush();
+//         System.out.flush();
 	        String output = outContent.toString();
 	        System.out.println(output);
+	        System.out.println("Hello");
 	        assertEquals("Attendance data not found\n", output);
 	    }
 

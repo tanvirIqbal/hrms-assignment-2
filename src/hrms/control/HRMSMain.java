@@ -3,6 +3,8 @@ package hrms.control;
 import hrms.HardCodedData;
 import hrms.entity.Attendance;
 import hrms.entity.Employee;
+import hrms.entity.LeaveRequest;
+import hrms.entity.LeaveType;
 import hrms.entity.PerformanceReview;
 import hrms.entity.User;
 import java.util.List;
@@ -15,6 +17,8 @@ public class HRMSMain {
 	static List<Employee> _employees = new ArrayList();
 	static List<Attendance> _attendanceData = new ArrayList();
 	static List<PerformanceReview> _performanceReviewData = new ArrayList();
+	static List<LeaveRequest> _leaveRequestData = new ArrayList();
+	static List<LeaveType> _leaveTypeData = new ArrayList();
 	public static void main(String[] args) {
 		HardCodedData hardCodedData = new HardCodedData();
 		System.out.println(hardCodedData.getWelcomeMessage());
@@ -23,6 +27,7 @@ public class HRMSMain {
 		_employees = hardCodedData.getEmployees();
 		_attendanceData = hardCodedData.getAttendaceData();
 		_performanceReviewData = hardCodedData.getPerformanceReviews();
+		_leaveRequestData = hardCodedData.getLeaveRequestData();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter username:");
 		String username = scanner.next();
@@ -192,14 +197,23 @@ public class HRMSMain {
                 case 1:
                     // Code for self details
                     System.out.println("Showing self details...");
+                    LeaveRequestControl attendanceControl = new LeaveRequestControl( _employees, _leaveTypeData, _leaveRequestData);
+                    attendanceControl.getEmployeeLeaveRequestDetails(_user.getEmployeeId());
                     break;
                 case 2:
                     // Code for subordinate (all) details
                     System.out.println("Showing subordinate (all) details...");
+                    attendanceControl = new LeaveRequestControl( _employees, _leaveTypeData, _leaveRequestData);
+                    attendanceControl.getAllSubordinateEmployeesLeaveRequestDetails(_user.getEmployeeId());
                     break;
                 case 3:
-                    // Code for subordinate (employee) details
+                	// Code for subordinate (employee) details
+               	 
+                    System.out.print("\nEnter employee id: ");
+                    int employeeId = scanner.nextInt(); // to get employeeID from the user seperately
                     System.out.println("Showing subordinate (employee) details...");
+                    attendanceControl = new LeaveRequestControl(_employees, _leaveTypeData, _leaveRequestData);
+                    attendanceControl.getSubordinateEmployeeLeaveRequestDetails(_user.getEmployeeId(), employeeId);
                     break;
                 case 4:
                     return; // Return to main menu

@@ -107,9 +107,7 @@ public class LeaveRequest {
     @Override
     public String toString() {
         return "LeaveRequest{" +
-                "leaveRequestId=" + leaveRequestId +
-                ", employeeId=" + employeeId +
-                ", leaveTypeId=" + leaveTypeId +
+                "employeeId=" + employeeId +
                 ", lineManagerId=" + lineManagerId +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
