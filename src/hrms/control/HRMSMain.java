@@ -19,11 +19,15 @@ public class HRMSMain {
     private static List<PerformanceReview> _performanceReviewData = new ArrayList<>();
     private static List<LeaveRequest> _leaveRequestData = new ArrayList<>();
     private static List<LeaveType> _leaveTypeData = new ArrayList<>();
+    private static List<User> _userList = new ArrayList<>();
 
     private static HRMSMain instance = null;
+    private HRMSState state;
 
     // Private constructor to prevent instantiation
-    private HRMSMain() {}
+    private HRMSMain() {
+        this.state = new LoggedOutState();
+    }
 
     // Public method to provide access to the instance
     public static HRMSMain getInstance() {
@@ -32,28 +36,33 @@ public class HRMSMain {
         }
         return instance;
     }
+    
+    public void setState(HRMSState state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return _user;
+    }
+
+    public List<User> getUserList() {
+        return _userList;
+    }
 
     public static void main(String[] args) {
         HardCodedData hardCodedData = new HardCodedData();
         System.out.println(hardCodedData.getWelcomeMessage());
         User[] users = hardCodedData.getUsers();
-        List<User> userList = Arrays.asList(users);
+        _userList = Arrays.asList(users);
         _employees = hardCodedData.getEmployees();
         _attendanceData = hardCodedData.getAttendaceData();
         _performanceReviewData = hardCodedData.getPerformanceReviews();
         _leaveRequestData = hardCodedData.getLeaveRequestData();
         _leaveTypeData = hardCodedData.getLeaveTypeData(); // Assuming you have a method to get leave types
         
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter username:");
-        String username = scanner.next();
-        System.out.println("Enter password:");
-        String password = scanner.next();
         
         HRMSMain hrmsMain = HRMSMain.getInstance();
-        hrmsMain.login(userList, username, password);
-        
-        scanner.close();
+        hrmsMain.showMenu();
     }
 
     public void login(List<User> userList, String enteredUsername, String enteredPassword) {
@@ -62,11 +71,13 @@ public class HRMSMain {
                 System.out.println("Login successful.");
                 user.setLoggedIn(true);
                 _user = user;
+                setState(new LoggedInState());
                 showMenu();
                 return;
             }
         }
         System.out.println("Invalid username or password. Please try again.");
+        showMenu();
     }
 
     public void logout() {
@@ -74,42 +85,11 @@ public class HRMSMain {
         System.out.println("Logout successful.");
     }
 
-    private void showMenu() {
-        Scanner scanner = new Scanner(System.in);
-        while (_user.getLoggedIn()) {
-            System.out.println("\nMain Menu");
-            System.out.println("1. Employee Details");
-            System.out.println("2. Attendance");
-            System.out.println("3. Leave");
-            System.out.println("4. Performance");
-            System.out.println("5. Logout");
-
-            System.out.print("\nEnter your choice: ");
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    showEmployeeDetailsMenu();
-                    break;
-                case 2:
-                    showAttendanceMenu();
-                    break;
-                case 3:
-                    showLeaveMenu();
-                    break;
-                case 4:
-                    showPerformanceMenu();
-                    break;
-                case 5:
-                    logout();
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 5.");
-            }
-        }
-        scanner.close();
+    public void showMenu() {
+        state.showMenu(this);
     }
 
-    private void showEmployeeDetailsMenu() {
+    public void showEmployeeDetailsMenu() {
         Scanner scanner = new Scanner(System.in);
         while (_user.getLoggedIn()) {
             System.out.println("\nEmployee Details Menu");
@@ -147,7 +127,7 @@ public class HRMSMain {
         scanner.close();
     }
 
-    private void showAttendanceMenu() {
+    public void showAttendanceMenu() {
         Scanner scanner = new Scanner(System.in);
         while (_user.getLoggedIn()) {
             System.out.println("\nAttendance Details Menu");
@@ -185,7 +165,7 @@ public class HRMSMain {
         scanner.close();
     }
 
-    private void showLeaveMenu() {
+    public void showLeaveMenu() {
         Scanner scanner = new Scanner(System.in);
         while (_user.getLoggedIn()) {
             System.out.println("\nLeave Details Menu");
@@ -223,7 +203,7 @@ public class HRMSMain {
         scanner.close();
     }
 
-    private void showPerformanceMenu() {
+    public void showPerformanceMenu() {
         Scanner scanner = new Scanner(System.in);
         while (_user.getLoggedIn()) {
             System.out.println("\nPerformance Review Menu");
