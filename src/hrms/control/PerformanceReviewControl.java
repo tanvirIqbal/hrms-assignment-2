@@ -69,12 +69,12 @@ public class PerformanceReviewControl implements IPerformanceReviewClient {
         }
     }
     
-    private String getEmployeeNameByID(int employeeID) {
+    public String getEmployeeNameByID(int employeeID) {
         for (Employee employee : employeeList) {
             if (employee.getEmployeeId() == employeeID) {
                 return employee.getName();
             }
         }
-        return "Unknown";
+        return "Employee is not found.";
     }
 }

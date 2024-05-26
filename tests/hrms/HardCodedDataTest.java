@@ -9,6 +9,7 @@ import hrms.entity.Attendance;
 import hrms.entity.Employee;
 import hrms.entity.LeaveRequest;
 import hrms.entity.LeaveType;
+import hrms.entity.PerformanceReview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,5 +121,27 @@ class HardCodedDataTest {
 
 	        // Assert that the result is not empty
 	        assertFalse(result.isEmpty(), "The attendance data should not be empty");
+	    }
+	 
+	 @Test
+	    public void testGetPerformanceReviewsNotNull() {
+			HardCodedData hardCodedData = new HardCodedData();
+
+	        // Get the attendance data
+	        List<PerformanceReview> result = hardCodedData.getPerformanceReviews();
+
+	        // Assert that the result is not null
+	        assertNotNull(result, "The performance data should not be null");
+	    }
+	 
+	 @Test
+	 public void testGetPerformanceReviewsNotEmpty() {
+			HardCodedData hardCodedData = new HardCodedData();
+
+	        // Get the attendance data
+	        List<PerformanceReview> result = hardCodedData.getPerformanceReviews();
+
+	        // Assert that the result is not empty
+	        assertFalse(result.isEmpty(), "The performance data should not be empty");
 	    }
 }
